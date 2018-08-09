@@ -8,6 +8,7 @@
 		"VERSION":"0.0.1"
 	}
 */
+
 class Index {
 
 	public $_func;
@@ -20,11 +21,22 @@ class Index {
 
 		$this->_func = new Model_Functions_Functions;
 
+		$this->_func->checkLogin();
+
 		$this->_cor = new Model_GOD;
 
 		if(isset($_POST['push']) and $_POST['push'] == 'push'){
 			$this->_push = true;
 		}
+
+		/*new de(array(
+			992006936 => array(
+				'email' => 'matheus@email.com',
+				'senha' => '123456',
+				'nome' => 'Matheus Maydana',
+				'sexo' => 1
+			)
+		));*/
 	}
 
 	function index(){

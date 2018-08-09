@@ -1,32 +1,26 @@
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
-	<head>
-		{{header}}
-		<link rel="stylesheet" href="{{static}}css/site.min.css{{cache}}">
-		<script src="{{static}}js/jQuery.min.js{{cache}}"></script>
-	</head>
-	<body>
-		<p id="resposta-ajax"></p>
-		<div id="ms-aviso-box">
-			<div class="ms-aviso-msg"></div>
-			<div class="ms-aviso-close"></div>
-		</div>
-		<div class="window">			
-			<header class="toolbar toolbar-header">
-				<h2 class="title">{{nome_sistema}}</h2>
-			</header>
-			<div class="window-content">
-				<div class="pane-group">
-					<div class="pane" style="max-width: 480px; margin: auto; padding: 40px;">
-						{{visao}}
-					</div>
-				</div>
-			</div>
-			<footer class="toolbar toolbar-footer">
-				<h2 class="title">matheusmaydana.com.br · 2018</h2>
-			</footer>
-		</div>
-		<!-- Javascript -->
-		<script src="{{static}}js/site.min.js{{cache}}"></script>
-	</body>
+<html>
+<head>
+	<title>Login</title>
+	<style>
+.mdl-layout {
+	align-items: center;
+  justify-content: center;
+}
+.mdl-layout__content {
+	padding: 24px;
+	flex: none;
+}
+input	{
+	
+    outline: none;
+}
+</style>
+	{{header}}
+</head>
+<body>
+
+	{{visao}}
+
+	<script src="/js/material.js"></script>
+</body>
 </html>

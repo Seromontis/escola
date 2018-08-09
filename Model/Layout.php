@@ -143,6 +143,12 @@ class Model_Layout {
 <link rel="manifest" href="/manifest.json"/>
 <link rel="shortcut icon" href="/img/site/caveira.png" type="image/x-icon">
 <link rel="icon" href="/img/site/caveira.png" type="image/x-icon">	
+
+<link rel="stylesheet" href="/css/icon.css">
+<link rel="stylesheet" href="/css/material.css">
+<link rel="stylesheet" href="/css/styles.css">
+<script src="/js/Boss.min.js"></script>
+
 php;
 
 		return $header;
@@ -152,6 +158,17 @@ php;
 	protected function _navi(){
 
 		$var = <<<nav
+			<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+			<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
+			<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
+			<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
+			<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
+			<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+			<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>
+			<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
+			<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+			<div class="mdl-layout-spacer"></div>
+			<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
 nav;
 
 		return $var;

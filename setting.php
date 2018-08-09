@@ -50,9 +50,6 @@ define('ACTION', 'escola_sistema');
 /* TRUE ONLINE - FALSE DESENVOLVIMENTO */
 define('PRODUCAO', false);
 
-/* NOME CLIENTE */
-define('CLIENTE', 'escola');
-
 define('URL_SITE', 'escola.local');
 
 define('HOJE', date('d/m/Y'));
@@ -87,7 +84,7 @@ define('HASH_PASSWORD', '123');
 session_start();
 
 $id_cliente = 0;
-$array = $_SESSION[CLIENTE]['login'] ?? array();
+$array = $_SESSION['login'] ?? array();
 foreach ($array as $id_conta => $info_conta){
 	$id_cliente = $id_conta;
 }

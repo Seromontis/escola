@@ -83,24 +83,27 @@ gulp.task('scss_producao', function(){
       .pipe(notify({ title:projeto+' - Produção', message: msg }));
 });
 
+gulp.task('icones_producao', function(){
+  // Função compila o SCSS SEM Map para produção
+  var sassFiles = 'css/icons/icones.css',
+      cssDest = 'css';
+    gulp.src(sassFiles)
+      .pipe(rename('icones.min.css'))
+      .pipe(sass({outputStyle: 'compressed'}))
+      .pipe(gulp.dest(cssDest))
+      .pipe(sass({ errLogToConsole: false, }))
+      .on('error', function(err) {
+          notify().write(err);
+          this.emit('end');
+      })
+      .pipe(notify({ title:projeto+' - Produção', message: msg }));
+});
+
 gulp.task('Boss_producao', function(cb){
   // Função compila o MS.JS SEM Map para produção
   return gulp.src('js/js/Boss/Boss.js')
     .pipe(uglify())
     .pipe(rename('Boss.min.js'))
-    .pipe(gulp.dest('js'))
-    .on('error', function(err) {
-        notify().write(err);
-        this.emit('end');
-    })
-    .pipe(notify({ title:projeto+' - Produção', message: msg }));
-});
-
-gulp.task('jQuery_producao', function(cb){
-  // Função compila o MS.JS SEM Map para produção
-  return gulp.src('js/js/jQuery/jQuery.js')
-    .pipe(uglify())
-    .pipe(rename('jQuery.min.js'))
     .pipe(gulp.dest('js'))
     .on('error', function(err) {
         notify().write(err);
@@ -122,19 +125,6 @@ gulp.task('site_producao', function(cb){
     .pipe(notify({ title:projeto+' - Produção', message: msg }));
 });
 
-gulp.task('jQuery', function(cb){
-  // Função compila o MS.JS com Map para Debugar
-  return gulp.src('js/js/jQuery/jQuery.js')
-    .pipe(sourcemaps.init())
-    .pipe(rename('jQuery.min.js'))
-    .pipe(sourcemaps.write('./map'))
-    .pipe(gulp.dest('js'))
-    .on('error', function(err) {
-        notify().write(err);
-        this.emit('end');
-    })
-    .pipe(notify({ title:projeto+' - Desenvolvimento', message: msg }));
-});
 gulp.task('Boss', function(cb){
   // Função compila o MS.JS com Map para Debugar
   return gulp.src('js/js/Boss/Boss.js')
@@ -180,6 +170,24 @@ gulp.task('scss', function(){
       .pipe(notify({ title:projeto+' - Desenvolvimento', message: msg }));
 });
 
+gulp.task('icones', function(){
+  // Função compila o SCSS com Map para Debugar
+  var sassFiles = 'css/icons/icones.css',
+      cssDest = 'css';
+    gulp.src(sassFiles)
+      .pipe(sourcemaps.init())
+      .pipe(sass({outputStyle: 'compiled'}))
+      .pipe(rename('icones.min.css'))
+      .pipe(sourcemaps.write('./map'))
+      .pipe(gulp.dest(cssDest))
+      .on('error', function(err) {
+          notify().write(err);
+          this.emit('end');
+      })
+      .pipe(notify({ title:projeto+' - Desenvolvimento', message: msg }));
+});
+
+
 
 /**
 ** - ESCUTAS -
@@ -192,11 +200,13 @@ gulp.task('scss', function(){
 **/
 gulp.task('default', function() {
     gulp.watch(['css/scss/**/*.scss'],['scss']);
+    gulp.watch(['css/icons/icones.css'],['icones']);
     gulp.watch('js/js/Boss/Boss.js', ['Boss']);
 });
 
 gulp.task('css', function() {
     gulp.watch('css/scss/**/*.scss',['scss']);
+    gulp.watch(['css/icons/icones.css'],['icones']);
 });
 
 gulp.task('js', function() {
@@ -205,5 +215,6 @@ gulp.task('js', function() {
 
 gulp.task('producao', function() {
   gulp.watch('css/scss/**/*.scss',['scss_producao']);
+    gulp.watch(['css/icons/icones.css'],['icones_producao']);
   gulp.watch('js/js/Boss/Boss.js', ['Boss_producao']);
 });

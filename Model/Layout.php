@@ -147,7 +147,9 @@ class Model_Layout {
 <link rel="stylesheet" href="/css/icon.css">
 <link rel="stylesheet" href="/css/material.css">
 <link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/site.min.css">
 <script src="/js/Boss.min.js"></script>
+<link rel="stylesheet" href="/css/icones.min.css">
 
 php;
 

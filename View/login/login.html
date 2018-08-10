@@ -1,0 +1,111 @@
+<div>
+	oi
+</div>
+<script>
+    Boss.warning({
+        message: 'Abc',
+        color: 'warning-green'
+    });
+	Boss.validate.init({
+		'config': {
+			'formId': 'form-login',
+			'okMessage': 'Enviando...',
+			'errorMessage': '<i class="fas fa-exclamation"></i> Tivemos um problema para enviar, tente novamente em alguns minutos.',
+			'lockPushState': false
+		},
+		'fields': {
+			'username': {
+				'rules': {
+					'empty': {'error': 'Informe seu username!'}
+				},
+				'classError': 'error-field',
+				'classOk': 'ok-field'
+			},
+			'password': {
+				'rules': {
+					'empty': {'error': 'Informe seu password!'}
+				},
+				'classError': 'error-field',
+				'classOk': 'ok-field'
+			}
+		},
+		'send': function(){
+
+			var form_sindico = Boss.getById('form-login');
+			form_sindico.classList.add('hidden');
+
+			Boss.getById('button-submit').classList.add('hidden');
+
+			var ux_env_feedback = Boss.getById('ux-env-feedback');
+
+			ux_env_feedback.classList.remove('hidden');
+			ux_env_feedback.innerHTML = 'Enviando...';
+
+			console.log('oi');
+
+			Boss.ajax({
+				'url': '/contato/sindicocontato',
+				'data': Boss.serializer('form-login'),
+				'dataType': 'json',
+				'done': function(rtn){
+
+					if(rtn.r == 'ok'){
+
+						if(rtn.info == 'Sua solicitação foi enviada!'){
+
+							ux_env_feedback.textContent = rtn.info;
+							form_sindico.style.display = 'none';
+						}else{
+
+							ux_env_feedback.textContent = rtn.info;
+							form_sindico.style.display = 'none';
+						}
+
+					}else if(rtn.r == 'no' && rtn.info != ''){
+
+						ux_env_feedback.textContent = rtn.info;
+						form_fornecedor.style.display = 'none';
+
+					}
+				},
+				error: function(rtn){
+					Boss.confirm({
+						message: 'Falha ao enviar, ente novamente em alguns segundos!',
+						'ok': 'Ok',
+						'no': false,
+						'okFunction': function(){
+						},
+						'noFunction': function(){
+						}
+					});
+				}
+			});
+		},
+		'fail': function(){
+			Boss.getById('form-login').classList.remove('hidden');
+			Boss.getById('button-submit').classList.remove('hidden');
+			Boss.warning({message: 'Tivemos um problema para enviar, tente novamente em alguns minutos.'});
+		}
+	});
+	function alturaInfoInter(){
+
+		var mensagem = Boss.getById('id-mensagem');
+		mensagem.style.overflow = 'hidden';
+		mensagem.style.height = 'auto';
+		mensagem.style.height = mensagem.scrollHeight+'px';
+
+	}
+
+	Boss.evts.add('keyup', Boss.getById('id-mensagem'), function(evt){
+		alturaInfoInter();
+	});
+	Boss.evts.add('mouseup', Boss.getById('id-mensagem'), function(evt){
+		alturaInfoInter();
+	});
+	Boss.evts.add('paste', Boss.getById('id-mensagem'), function(evt){
+		alturaInfoInter();
+	});
+	Boss.evts.add('cut', Boss.getById('id-mensagem'), function(evt){
+		alturaInfoInter();
+	});
+</script>

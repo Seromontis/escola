@@ -980,8 +980,17 @@ window.Boss = {
 	},
 	warning: function(obj){
 		if(obj.message){
-
-			var mask = '<div class="boss-warning"><button id="boss-warning-close" type="button" class="boss-warning-close"><i class="fa fa-times" aria-hidden="true"></i></button><p>'+obj.message+'</p></div>';
+			var mask = `
+			<div class="boss-warning">
+					<div class="inline-block vertical-top width-80 text-left">	
+						<p>${obj.message}</p>
+					</div>
+					<div class="inline-block vertical-top width-20 text-right">
+						<button id="boss-warning-close" type="button" class="boss-warning-close width-100">
+							<i class="icl ic-times"></i>
+						</button>
+					</div>
+			</div>`;
 
 			if(Boss.getById('boss-warning')){
 				var div = Boss.getById('boss-warning');

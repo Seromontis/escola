@@ -35,6 +35,15 @@
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box; }
 
+.vertical-top {
+  vertical-align: top; }
+
+.vertical-middle {
+  vertical-align: middle; }
+
+.vertical-bottom {
+  vertical-align: bottom; }
+
 #boss-warning {
   position: fixed;
   display: block;
@@ -59,7 +68,7 @@
   display: block;
   color: #FFF;
   margin: auto;
-  width: 300px;
+  text-align: center;
   border-radius: 4px;
   padding: 10px;
   box-sizing: border-box;
@@ -73,6 +82,13 @@
 
 .warning-blue {
   background-color: #41A1FF !important; }
+
+.boss-warning-close {
+  background: #ffffff;
+  border: 0;
+  border-radius: 60%;
+  height: 30px;
+  width: 30px; }
 
 .hidden {
   margin-top: -9999px !important;
